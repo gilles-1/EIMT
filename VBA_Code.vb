@@ -384,4 +384,13 @@ psql -h localhost -d EIMT -U gilles -t -c "SELECT ST_AsGeoJSON(geom)::json, row_
 
 psql -h localhost -d EIMT -U gilles -t -c "SELECT array_to_json(array_agg(f)) As features FROM (SELECT 'Feature' As type, ST_AsGeoJSON(geom)::json As geometry, row_to_json((annee, province_territoire, volet_programme, profession, employeur, postes_approuves, eimt_approuves, adresse)) As properties FROM fait_approbations INNER JOIN adresse ON fait_approbations.adresse_id = adresse.adresse_id INNER JOIN annee ON fait_approbations.annee_id = annee.annee_id INNER JOIN employeur ON fait_approbations.employeur_id = employeur.employeur_id INNER JOIN profession ON fait_approbations.profession_id = profession.profession_id INNER JOIN province_territoire ON fait_approbations.province_territoire_id = province_territoire.province_territoire_id INNER JOIN volet_programme ON fait_approbations.volet_programme_id = volet_programme.volet_programme_id) As f" -o data.geojson
 
-
+// Ajouter le contrôle de recherche avec plusieurs propriétés
+var searchControl = new L.Control.Search({
+  layer: geoJsonLayer,
+  propertyName: ['f1', 'f2', 'f3', 'f4', 'f5','f6', 'f7'], // Propriétés à rechercher
+  marker: false,
+  moveToLocation: function (latlng, title, map) {
+    // Recentrer la carte sur le résultat de la recherche
+    map.setView(latlng, map.getZoom());
+  }
+});

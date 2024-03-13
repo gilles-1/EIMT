@@ -169,10 +169,10 @@
     },
   });
   
-  const markers = L.markerClusterGroup().addLayer(lightData);
+  //const markers = L.markerClusterGroup().addLayer(lightData);
 
   // marker clustering
-  map.addLayer(markers);
+  //map.addLayer(markers);
 
 
   // Ajouter la couche GeoJSON à la carte
@@ -182,7 +182,7 @@
 
 L.control.search({
       layer: lightData,
-      propertyName: ['f1', 'f2', 'f3', 'f4', 'f5'], // Propriétés à rechercher
+      propertyName: ['f1', 'f2', 'f3', 'f4', 'f5','f6', 'f7'], // Propriétés à rechercher
       marker: false
     }).addTo(map);
 
