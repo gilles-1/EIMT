@@ -28,10 +28,75 @@
     <link rel="icon" href="favicon.ico">
    <!--<title><%= htmlWebpackPlugin.options.title %></title> -->
 
+   <style>
+    /* Ajouter du style personnalisé pour la navbar et le footer */
+    body {
+      margin-bottom: 60px; /* Hauteur du footer pour éviter qu'il ne recouvre le contenu */
+    
+    }
+
+    #map {
+        width: 100%;
+        height: 100vh;
+      }
+
+    .navbar-custom {
+      background-color: rgb(34, 22, 28);
+    }
+
+    .footer-custom {
+      background-color: rgb(231, 218, 218);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+
    <title>EIMT</title>
 </head>
-<body>
-    
+<body >
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand text-uppercase fw-bold" href="#">
+        <span class="bg-primary bg-gradient p-1 rounded-3 text-light bg-opacity-50">EIMT</span><span class="bg-success bg-gradient p-1 rounded-3 text-dark bg-opacity-10">DATA</span> 
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">À propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenu de la page -->
+  <div id="map"></div>
+
+
+    <!-- BODY -->
+
+    <!-- Footer Bootstrap Light -->
+    <footer class="footer-custom">
+      <div class="container">
+    <span class="text-muted">&copy; 2024 EIMT DATA. Tous droits réservés. </span>
+  </div>
+</footer>
+
     <!-- Bootstrap JS (optionnel, mais nécessaire pour certaines fonctionnalités) -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
