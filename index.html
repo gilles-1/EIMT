@@ -101,6 +101,75 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<!-- geojson data  -->
+<script src="./data.js"></script>
+
+<!-- leaflet js  -->
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+<!-- markercluster  -->
+<script src="./dist/leaflet.markercluster.js"></script>
+
+<script>
+  const map = L.map("map").setView([28.2521, 83.9774], 18);
+  const osm = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }
+  ).addTo(map);
+
+  const geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8,
+  };
+
+  // loading geojson
+  const lightData = L.geoJSON(data, {
+    onEachFeature: function (feature, layer) {
+
+           const popupContent =
+          '<h4 class = "text-primary">Street Light</h4>' +
+          '<div class="container"><table class="table table-striped">' +
+          "<thead><tr><th>Properties</th><th>Value</th></tr></thead>" +
+          "<tbody><tr><td> Name </td><td>" +
+          feature.properties.f1 +
+          "</td></tr>" +
+          "<tr><td>Elevation </td><td>" +
+          feature.properties.f2 +
+          "</td></tr>" +
+          "<tr><td> Power (watt) </td><td>" +
+          feature.properties.f3 +
+          "</td></tr>" +
+          "<tr><td> Pole Height </td><td>" +
+          feature.properties.f4 +
+          "</td></tr>" +
+          "<tr><td> Time </td><td>" +
+          feature.properties.f5 +
+          "</td></tr>";
+          
+          layer.bindPopup(popupContent);
+
+    },
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, geojsonMarkerOptions);
+    },
+  });
+  
+  const markers = L.markerClusterGroup().addLayer(lightData);
+
+  // marker clustering
+  map.addLayer(markers);
+</script>
+
   
 </body>
 </html>
