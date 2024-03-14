@@ -394,3 +394,8 @@ var searchControl = new L.Control.Search({
     map.setView(latlng, map.getZoom());
   }
 });
+
+
+psql EIMT -c "SELECT * FROM annee;" 
+
+export PGPASSWORD="Tchako@1987" 
